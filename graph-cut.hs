@@ -13,7 +13,7 @@ data Graph a = Graph [a] [Edge a]
 
 -- Remove an edge from a graph by merging the edge's vertices and removing any resulting loops
 contract :: Eq a => Graph a -> Edge a -> Graph a
-contract (Graph vs es) edge@(Edge remove keep) = Graph vertices edges
+contract (Graph vs es) (Edge remove keep) = Graph vertices edges
   where vertices = filter (/= remove) vs
         edges    = filter (not . isLoop) $ map (adjust remove keep) es
 
